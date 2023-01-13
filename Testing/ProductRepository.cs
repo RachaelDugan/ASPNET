@@ -22,10 +22,10 @@ namespace Testing
         {
             return _connection.QuerySingle<Product>("SELECT * FROM PRODUCTS WHERE PRODUCTID = @id", new { id = id });
         }
-
-        public Product getProduct(int id)
+        public void UpdateProduct(Product product)
         {
-            throw new System.NotImplementedException();
+            _connection.Execute("UPDATE products SET Name = @name, Price = @price WHERE ProductID = @id",
+             new { name = product.Name, price = product.Price, id = product.ProductID });
         }
     }
 }
